@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import APIService from "../APIService";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import logo from "../logos/sgv_group.png";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["myToken"]);
-  const [storeId, setId] = useCookies(["storeId"]);
-  const [isLogin, setLogin] = useState(true);
+  const [id, setId] = useCookies(["storeId"]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Login() {
     if (String(user_token) === "undefined") {
       navigate("/");
     } else {
-      navigate("/home");
+      navigate("/stock-table");
     }
   }, [token]);
 
@@ -29,74 +29,61 @@ function Login() {
       .catch((error) => console.log(error));
   };
 
-  const registerBtn = () => {
-    APIService.RegisterUser({ username, password })
-      .then(() => loginBtn())
-      .catch((error) => console.log(error));
-  };
-
   return (
-    <div className="App">
-      {isLogin ? <h1>Please Login</h1> : <h1>Please Register</h1>}
+    <section className="vh-100 gradient-custom">
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div
+              className="card bg-dark text-white"
+              style={{ borderRadius: "10px" }}
+            >
+              <img src={logo} className="img-fluid" alt="" />
+              <div className="card-body p-5 text-center">
+                <div className="mb-md-5 mt-md-4 pb-5">
+                  <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                  <p className="text-white-50 mb-5">
+                    Please enter your username and password!
+                  </p>
 
-      <div className="mb-3">
-        <label htmlFor="username" className="form-label">
-          Username
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="username"
-          placeholder="Please Enter Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+                  <div className="form-outline form-white mb-4">
+                    <input
+                      type="text"
+                      id="username"
+                      className="form-control form-control-lg"
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <label className="form-label" htmlFor="typeEmailX">
+                      Username
+                    </label>
+                  </div>
+
+                  <div className="form-outline form-white mb-4">
+                    <input
+                      type="password"
+                      id="password"
+                      className="form-control form-control-lg"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label className="form-label" htmlFor="typePasswordX">
+                      Password
+                    </label>
+                  </div>
+
+                  <button
+                    className="btn btn-outline-light btn-lg px-5"
+                    type="submit"
+                    onClick={loginBtn}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          placeholder="Please Enter Pssword"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-
-      {isLogin ? (
-        <button className="btn btn-primary" onClick={loginBtn}>
-          Login
-        </button>
-      ) : (
-        <button className="btn btn-primary" onClick={registerBtn}>
-          Register
-        </button>
-      )}
-
-      <div className="mb-3">
-        {isLogin ? (
-          <h5>
-            If you don't have an account, Please{" "}
-            <button className="btn btn-primary" onClick={() => setLogin(false)}>
-              Register
-            </button>{" "}
-            here
-          </h5>
-        ) : (
-          <h5>
-            If you have an account, Please{" "}
-            <button className="btn btn-primary" onClick={() => setLogin(true)}>
-              Login
-            </button>{" "}
-            here
-          </h5>
-        )}
-      </div>
-    </div>
+    </section>
   );
 }
 

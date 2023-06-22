@@ -18,7 +18,6 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Login />} />
-          <Route exact path="/home" element={<App />} />
           <Route exact path="/add-item" element={<AddItem />} />
           <Route exact path="/stock-table" element={<Table />} />
           <Route exact path="/report" element={<Report />} />

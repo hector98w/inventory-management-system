@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import SortIcon from "@mui/icons-material/Sort";
 
 function Table() {
   const [data, setData] = useState([]);
@@ -11,14 +12,18 @@ function Table() {
   const sorting = (col) => {
     if (order === "ASC") {
       const sorted = [...data].sort((a, b) =>
-        a[col]?.toLowerCase() > b[col]?.toLowerCase() ? 1 : -1
+        a[col]?.toString().toLowerCase() > b[col]?.toString().toLowerCase()
+          ? 1
+          : -1
       );
       setData(sorted);
       setOrder("DSC");
     }
     if (order === "DSC") {
       const sorted = [...data].sort((a, b) =>
-        a[col]?.toLowerCase() > b[col]?.toLowerCase() ? 1 : -1
+        a[col]?.toString().toLowerCase() < b[col]?.toString().toLowerCase()
+          ? 1
+          : -1
       );
       setData(sorted);
       setOrder("ASC");
@@ -46,23 +51,21 @@ function Table() {
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
-              <th scope="col" onClick={() => sorting("Category")}>
-                Category
+              <th scope="col">
+                Category/ 类别 <SortIcon onClick={() => sorting("category")} />
               </th>
-              <th scope="col" onClick={() => sorting("SKU")}>
-                SKU
+              <th scope="col">SKU</th>
+              <th scope="col">
+                Item name/ 商品名称{" "}
+                <SortIcon onClick={() => sorting("item_name")} />
               </th>
-              <th scope="col" onClick={() => sorting("Item name")}>
-                Item name
+              <th scope="col">Stock/ 库存数量</th>
+              <th scope="col">Minimum Stock/ 最低数量</th>
+              <th scope="col">
+                Created At/ 创建日期{" "}
+                <SortIcon onClick={() => sorting("created_at")} />
               </th>
-              <th scope="col" onClick={() => sorting("Stock")}>
-                Stock
-              </th>
-              <th scope="col">Minimum Stock</th>
-              <th scope="col" onClick={() => sorting("Created At")}>
-                Created At
-              </th>
-              <th scope="col">ID</th>
+              <th scope="col">Action/ 操作</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +87,7 @@ function Table() {
                       className="btn btn-primary"
                       onClick={() => navigate(`/details/${data.id}`)}
                     >
-                      {data.id}
+                      Edit/ 编辑
                     </button>
                   </td>
                 </tr>

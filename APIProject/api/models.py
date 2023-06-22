@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.utils import timezone
 
 class UserManager(BaseUserManager):
     def create_user(self,username,password=None,is_active=True,is_staff=False,is_admin=False,is_superuser=False):
@@ -56,7 +57,7 @@ class Stock(models.Model):
     item_name = models.CharField(max_length=20)
     stock = models.PositiveIntegerField(default=0)
     minimum_stock = models.PositiveIntegerField(default=0)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField(default=timezone.now)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
@@ -66,10 +67,10 @@ class Report(models.Model):
     category = models.CharField(max_length=20)
     sku = models.CharField(max_length=20)
     item_name = models.CharField(max_length=20)
-    stock = models.CharField(max_length=20)
-    created_at = models.DateField(auto_now_add=True)
-    edited_at = models.TimeField(auto_now_add=True)
-    store = models.BigIntegerField()
+    stock = models.CharField(max_length=20, null=True)
+    edited_date = models.DateField(auto_now_add=True)
+    action = models.CharField(max_length=20, null=True)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return (self.item_name)

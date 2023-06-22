@@ -32,12 +32,12 @@ function AddItem() {
       }
     });
 
-    var stock = "initialize";
+    var action = "added";
     APIService.AddItemRecord({
       category,
       sku,
       item_name,
-      stock,
+      action,
       store,
     }).catch((error) => console.log(error));
   };
@@ -48,7 +48,7 @@ function AddItem() {
       <br />
       <div className="col-md-6 offset-md-3">
         <div className="card">
-          <h5 className="card-header">Add Item</h5>
+          <h5 className="card-header">Add Item 添加商品</h5>
           <div className="card-body">
             <h6 className="card-title">SKU (optional)</h6>
             <p className="card-text">
@@ -60,7 +60,7 @@ function AddItem() {
                 onChange={(e) => setSku(e.target.value)}
               />
             </p>
-            <h6 className="card-title">Item Name</h6>
+            <h6 className="card-title">Item Name 商品名称</h6>
             <p className="card-text">
               <input
                 type="text"
@@ -70,7 +70,7 @@ function AddItem() {
                 onChange={(e) => setName(e.target.value)}
               />
             </p>
-            <h6 className="card-title">Category</h6>
+            <h6 className="card-title">Category 类别</h6>
             <p className="card-text">
               <input
                 type="text"
@@ -80,7 +80,7 @@ function AddItem() {
                 onChange={(e) => setCategory(e.target.value)}
               />
             </p>
-            <h6 className="card-title">Minimum Stock</h6>
+            <h6 className="card-title">Minimum Stock 最低数量</h6>
             <p className="card-text">
               <input
                 type="text"
@@ -97,7 +97,7 @@ function AddItem() {
 
         <div className="d-grid gap-2 col-6 mx-auto">
           <button className="btn btn-primary" onClick={submit}>
-            Submit
+            Submit/ 提交
           </button>
         </div>
       </div>

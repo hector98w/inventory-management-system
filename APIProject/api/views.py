@@ -31,8 +31,10 @@ class ReportViewSet(viewsets.ModelViewSet):
             start = request.query_params.get("start")
             end = request.query_params.get("end")
             storeId = request.user.store_id
-            queryset = Report.objects.filter(store=storeId)
-            queryset = Report.objects.filter(created_at__range=(start, end))
-            serializer = ReportSerializer(queryset, many=True)
+            queryset = Report.objects.filter(store_id=storeId)
+            queryset = Report.objects.filter(edited_date__range=(start, end))
+            queryset = Report.objects.values('id', 'category', 'sku', 'item_name', 'stock', 
+                                                  'edited_date', 'action').order_by('item_name')
+            serializer = ReportSerializer(queryset, many=True) 
             return Response(serializer.data)
         return Response(None)

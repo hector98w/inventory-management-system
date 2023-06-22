@@ -21,9 +21,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/home">
-            Inventory Management System
-          </a>
+          <a className="navbar-brand">Inventory Management System</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -39,19 +37,19 @@ function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link" href="/add-item">
-                  Add item
+                  Add item/ 添加商品
                 </a>
               </li>
 
               <li className="nav-item">
                 <a className="nav-link" href="/stock-table">
-                  Stock Table
+                  Stock Table/ 库存
                 </a>
               </li>
 
               <li className="nav-item">
                 <a className="nav-link" href="/report">
-                  Report
+                  Report/ 报告
                 </a>
               </li>
             </ul>

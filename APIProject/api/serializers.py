@@ -26,5 +26,4 @@ class UserSerilizer(serializers.ModelSerializer):
 class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
-        fields = ('id', 'category', 'sku', 'item_name', 
-                  'stock', 'created_at', 'edited_at', 'store')
+        fields = ('__all__')

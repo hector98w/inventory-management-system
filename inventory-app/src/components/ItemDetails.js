@@ -51,6 +51,7 @@ function ItemDetails() {
       if (resp.id) {
         navigate("/stock-table");
       } else {
+        console.log(resp);
         alert("error");
       }
     });
@@ -75,13 +76,13 @@ function ItemDetails() {
     });
 
     var store = token.storeId;
-    var stock = "deleted";
+    var action = "deleted";
     APIService.AddItemRecord({
       category,
       sku,
       item_name,
-      stock,
       store,
+      action,
     }).catch((error) => console.log(error));
   };
 
@@ -92,7 +93,7 @@ function ItemDetails() {
       <div className="col-md-6 offset-md-3">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Category</h5>
+            <h5 className="card-title">Category/ 类别</h5>
             <p className="card-text">
               <input
                 type="text"
@@ -112,7 +113,7 @@ function ItemDetails() {
                 readOnly={true}
               />
             </p>
-            <h5 className="card-title">Item Name</h5>
+            <h5 className="card-title">Item Name/ 商品名称</h5>
             <p className="card-text">
               <input
                 type="text"
@@ -122,7 +123,7 @@ function ItemDetails() {
                 readOnly={true}
               />
             </p>
-            <h5 className="card-title">Stock</h5>
+            <h5 className="card-title">Stock/ 商品数量</h5>
             <p className="card-text">
               <input
                 type="number"
@@ -132,7 +133,7 @@ function ItemDetails() {
                 onChange={(e) => setStock(e.target.value)}
               />
             </p>
-            <h5 className="card-title">Minimum Stock</h5>
+            <h5 className="card-title">Minimum Stock/ 最低数量</h5>
             <p className="card-text">
               <input
                 type="number"
@@ -149,10 +150,20 @@ function ItemDetails() {
 
         <div className="d-grid gap-2 col-6 mx-auto">
           <a className="btn btn-primary" onClick={updateDeatails}>
-            Update
+            Update/ 更新
           </a>
-          <a className="btn btn-danger" onClick={deleteDeatails}>
-            Delete
+          <a
+            className="btn btn-danger"
+            onClick={() => {
+              const confirmBox = window.confirm(
+                "Do you really want to delete this item?"
+              );
+              if (confirmBox === true) {
+                deleteDeatails();
+              }
+            }}
+          >
+            Delete/ 删除
           </a>
         </div>
       </div>
