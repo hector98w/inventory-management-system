@@ -57,7 +57,6 @@ class Stock(models.Model):
     item_name = models.CharField(max_length=20)
     stock = models.PositiveIntegerField(default=0)
     minimum_stock = models.PositiveIntegerField(default=0)
-    created_at = models.DateField(default=timezone.now)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

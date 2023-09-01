@@ -61,10 +61,6 @@ function Table() {
               </th>
               <th scope="col">Stock/ 库存数量</th>
               <th scope="col">Minimum Stock/ 最低数量</th>
-              <th scope="col">
-                Created At/ 创建日期{" "}
-                <SortIcon onClick={() => sorting("created_at")} />
-              </th>
               <th scope="col">Action/ 操作</th>
             </tr>
           </thead>
@@ -81,7 +77,6 @@ function Table() {
                     <td className="text-danger">{data.stock}</td>
                   )}
                   <td>{data.minimum_stock}</td>
-                  <td>{data.created_at}</td>
                   <td>
                     <button
                       className="btn btn-primary"

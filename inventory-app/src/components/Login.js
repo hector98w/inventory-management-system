@@ -53,7 +53,7 @@ function Login() {
                       className="form-control form-control-lg"
                       onChange={(e) => setUsername(e.target.value)}
                     />
-                    <label className="form-label" htmlFor="typeEmailX">
+                    <label className="form-label" htmlFor="username">
                       Username
                     </label>
                   </div>
@@ -65,7 +65,7 @@ function Login() {
                       className="form-control form-control-lg"
                       onChange={(e) => setPassword(e.target.value)}
                     />
-                    <label className="form-label" htmlFor="typePasswordX">
+                    <label className="form-label" htmlFor="password">
                       Password
                     </label>
                   </div>

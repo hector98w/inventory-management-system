@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import logo from "../logos/logo_1.png";
 
 function Navbar() {
   const [token, setToken, removeToken] = useCookies(["myToken"]);
@@ -21,7 +22,9 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand">Inventory Management System</a>
+          <a className="navbar-brand">
+            <img src={logo} alt="" />
+          </a>
           <button
             className="navbar-toggler"
             type="button"

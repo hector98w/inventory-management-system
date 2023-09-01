@@ -5,8 +5,7 @@ from rest_framework.authtoken.views import Token
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = ('id', 'category', 'sku', 'item_name', 
-                  'stock', 'minimum_stock', 'created_at', 'store')
+        fields = ('__all__')
         
 class UserSerilizer(serializers.ModelSerializer):
     class Meta:
